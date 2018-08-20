@@ -38,7 +38,7 @@ const config = {
           babelrc: false,
           plugins: ["transform-object-rest-spread"],
           presets: [
-            "es2015",
+            "env",
             "react"
           ]
         }
