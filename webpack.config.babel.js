@@ -39,6 +39,7 @@ const config = {
           plugins: ["transform-object-rest-spread"],
           presets: [
             "env",
+            "stage-2",
             "react"
           ]
         }
@@ -55,6 +56,11 @@ const config = {
       use: [
         "style-loader",
         "css-loader"
+      ]
+    }, {
+      test: /\.(png|svg|jpg|gif)$/,
+      use: [
+        "file-loader"
       ]
     }]
   }

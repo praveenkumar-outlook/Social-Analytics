@@ -1,3 +1,43 @@
 .ui-login {
-  text-align: center;
+  height: 100vh;
+  .page-container {
+    height: 100%;
+    .row {
+      height: 100%;
+      .image-container {
+        height: 100%;
+        background: url('./Login-BG.png');
+        background-repeat: no-repeat;
+        width: 100%;
+      }
+      .theme-background {
+        background-color: #4267b2;
+        border-left: 1px solid #133783;
+        min-height: 100%;
+      }
+    }
+  }
+  .login-container {
+    height: calc(100% - 80px);
+    position: absolute;
+    top: 40px;
+    .row {
+      height: 100%;
+      .login-logo {
+        background: url("./Login-Logo.png");
+        background-repeat: no-repeat;
+        width: 200px;
+        height: 200px;
+        margin: auto;
+      }
+      .login-details {
+        background-color: #ffffff;
+        border: 1px solid #133783;
+        border-radius: 4px;
+        min-height: 100%;
+        padding: 10% 15px;
+        text-align: center;
+      }
+    }
+  }
 }

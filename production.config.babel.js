@@ -30,7 +30,8 @@ const config = {
           babelrc: false,
           plugins: ["transform-object-rest-spread"],
           presets: [
-            "es2015",
+            "env",
+            "stage-2",
             "react"
           ]
         }
@@ -47,6 +48,11 @@ const config = {
       use: [
         "style-loader",
         "css-loader"
+      ]
+    }, {
+      test: /\.(png|svg|jpg|gif)$/,
+      use: [
+        "file-loader"
       ]
     }]
   }
