@@ -1,12 +1,12 @@
 import React from "react";
-import {Grid, Row, Col} from "react-bootstrap";
+import {Grid, Row, Col, Button} from "react-bootstrap";
 import "./Login";
 
 class Login extends React.Component {
   componentWillMount() {
     const navigateToApp = () => {
       this.props.history.push("/");
-    }
+    };
     window.FB.getLoginStatus(function(response) {
       if (response.status === "connected") {
         navigateToApp();
@@ -14,9 +14,14 @@ class Login extends React.Component {
     });
   }
 
-  checkLoginState = () => {
-    window.FB.getLoginStatus(function(response) {
-      console.log('----------->>>>>>>>.', response);
+  login = () => {
+    const navigateToApp = () => {
+      this.props.history.push("/");
+    };
+    window.FB.login(function(response) {
+      if (response.status === "connected") {
+        navigateToApp();
+      }
     });
   }
 
@@ -36,11 +41,11 @@ class Login extends React.Component {
             <Col md={8}></Col>
             <Col className="login-details" md={4}>
               <div className="login-logo"></div>
-              <div className="fb-login-button"
-                onClick={this.checkLoginState}
-                data-max-rows="1" data-size="large"
-                data-button-type="login_with" data-show-faces="false">
-              </div>
+              <Button className="login-button"
+                onClick={this.login}
+                bsStyle="primary" bsSize="large" block>
+                Login with Facebook
+              </Button>
             </Col>
           </Row>
         </Grid>
