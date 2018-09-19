@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import store from "./Store/store";
 import Router from "./routes";
+
+// Styles
 import "bootstrap/dist/css/bootstrap";
+import "./common";
 
 window.FB.init({
   appId: "506449243159585",

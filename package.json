@@ -1,5 +1,5 @@
 {
-  "name": "ui-facebook-analytics",
+  "name": "ui-social-analytics",
   "version": "1.0.0",
   "description": "A UI showcase",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "grunt-dev": "grunt dev",
     "grunt-build": "grunt build"
   },
-  "repository": "git+https://github.com/praveenkumar-outlook/UI-Facebook-Analytics.git",
+  "repository": "git+https://github.com/praveenkumar-outlook/UI-Social-Analytics.git",
   "keywords": [
     "Webpack4",
     "React",
@@ -19,9 +19,9 @@
   "author": "Praveenkumar K",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/praveenkumar-outlook/UI-Facebook-Analytics/issues"
+    "url": "https://github.com/praveenkumar-outlook/UI-Social-Analytics/issues"
   },
-  "homepage": "https://github.com/praveenkumar-outlook/UI-Facebook-Analytics#readme",
+  "homepage": "https://github.com/praveenkumar-outlook/UI-Social-Analytics#readme",
   "devDependencies": {
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bootstrap": "^4.1.3",
+    "bootstrap": "^3.3.7",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",

@@ -13,6 +13,12 @@ const AppRouter = () => (
         </Container>
       }>
       </Route>
+      <Route exact path="/activity" render={(props) =>
+        <Container {...props}>
+          <Home></Home>
+        </Container>
+      }>
+      </Route>
       <Route exact path="/login" component={Login}></Route>
     </div>
   </Router>
