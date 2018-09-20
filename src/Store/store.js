@@ -7,4 +7,8 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
+store.subscribe(() => {
+  localStorage.setItem('ACCESS_TOKEN', store.getState().user.accessToken);
+});
+
 export default store;

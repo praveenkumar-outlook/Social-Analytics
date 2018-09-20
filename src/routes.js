@@ -1,5 +1,5 @@
 import React from "react";
-import {HashRouter as Router, Route} from "react-router-dom";
+import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import Container from "./Components/Container/Container.react";
 import Login from "./Components/Login/Login.react";
 import Home from "./Components/Home/Home.react";
@@ -7,19 +7,15 @@ import Home from "./Components/Home/Home.react";
 const AppRouter = () => (
   <Router basename="/">
     <div className="ui-route">
-      <Route exact path="/" render={(props) =>
-        <Container {...props}>
-          <Home></Home>
-        </Container>
-      }>
-      </Route>
-      <Route exact path="/activity" render={(props) =>
-        <Container {...props}>
-          <Home></Home>
-        </Container>
-      }>
-      </Route>
-      <Route exact path="/login" component={Login}></Route>
+      <Switch>
+        <Route exact path="/login" component={Login}></Route>
+        <Route path="/">
+          <Container>
+            <Route exact component={Home}></Route>
+            <Route exact path="activity" component={Home}></Route>
+          </Container>
+        </Route>
+      </Switch>
     </div>
   </Router>
 );

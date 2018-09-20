@@ -2,7 +2,8 @@ import actions from "../Action/ActionTypes";
 
 const initialState = {
   userId: "",
-  accessToken: ""
+  accessToken: "",
+  userProfile: ""
 };
 
 const userReducer = (state = initialState, action) => {
@@ -12,6 +13,14 @@ const userReducer = (state = initialState, action) => {
         ...state,
         userId: action.data.userId,
         accessToken: action.data.accessToken
+      };
+    case actions.GET_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: {
+          ...action.data,
+          picture: action.data.picture.data.url
+        }
       };
     default:
       return state;

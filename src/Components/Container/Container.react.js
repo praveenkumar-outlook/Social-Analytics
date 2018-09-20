@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {withRouter} from "react-router";
 import {Col, Grid, Row} from "react-bootstrap";
 import UserAction from "../../Action/User";
 import Menu from "../Menu/Menu.react";
@@ -46,13 +47,18 @@ class Container extends React.Component {
 
   render() {
     const {location} = this.props;
-    
+    const {userId} = this.state;
+
     return (
       <div className="ui-container">
         <Grid fluid>
           <Row className="show-grid">
             <Col md={12} className="padding-0">
-              <Header />
+              {
+                userId
+                ? <Header />
+                : <div className="ui-header"></div>
+              }
             </Col>
             <Col xsHidden md={1} className="padding-left-0">
               <Menu pathname={location.pathname} />
@@ -67,4 +73,4 @@ class Container extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Container);
+export default withRouter(connect(mapStateToProps)(Container));

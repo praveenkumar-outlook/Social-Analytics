@@ -2,4 +2,12 @@
     background-color: #4267b2;
     border-bottom: 1px solid #29487d;
     min-height: 43px;
+    .profile-picture {
+        height: 43px;
+        width: 43px;
+    }
+    .profile-name {
+        background-color: #00a89b;
+        padding: 16px 5px;
+    }
 }
