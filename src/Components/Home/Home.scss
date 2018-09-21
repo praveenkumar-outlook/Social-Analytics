@@ -1,0 +1,35 @@
+.ui-home {
+  text-align: left;
+  .nav {
+    margin: 20px 0;
+    &.nav-tabs {
+      border-color: #00a89b;
+    }
+    li {
+      &.active {
+        a {
+          background-color: transparent;
+          border-color: #00a89b;
+          border-bottom-color: #e9ebee;
+          color: #00a89b;
+          font-weight: 700;
+          &:hover {
+            background-color: transparent;
+            border-color: #00a89b;
+            border-bottom-color: #e9ebee;
+            color: #00a89b;
+          }
+        }
+      }
+      a {
+        color: #00a89b;
+        font-weight: 400;
+        &:hover {
+          background-color: #00a89b;
+          color: #ffffff;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

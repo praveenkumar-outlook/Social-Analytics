@@ -1,4 +1,5 @@
-import React from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import {Col, Grid, Row} from "react-bootstrap";
@@ -13,7 +14,13 @@ const mapStateToProps = (state) => (
   }
 );
 
-class Container extends React.Component {
+class Container extends Component {
+  static propTypes = {
+    history: PropTypes.any.isRequired,
+    location: PropTypes.any.isRequired,
+    user: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +53,7 @@ class Container extends React.Component {
   }
 
   render() {
-    const {location} = this.props;
+    const {location, children} = this.props;
     const {userId} = this.state;
 
     return (
@@ -63,8 +70,12 @@ class Container extends React.Component {
             <Col xsHidden md={1} className="padding-left-0">
               <Menu pathname={location.pathname} />
             </Col>
-            <Col xs={12} md={11}>
-              {this.props.children}
+            <Col xs={12} md={11} className="ui-shell">
+              {
+                userId
+                ? children
+                : ""
+              }
             </Col>
           </Row>
         </Grid>

@@ -17,7 +17,28 @@ const userAction = {
         action({
           type: actions.GET_USER_PROFILE,
           data: response.data
-        })
+        });
+      }).catch((error) => {
+        throw(error);
+      });
+    });
+  },
+  getUserStatistics: (userId) => {
+    store.dispatch((action) => {
+      userApi.getUserLikes(userId).then((response) => {
+        action({
+          type: actions.GET_USER_LIKES,
+          data: response.data
+        });
+      }).catch((error) => {
+        throw(error);
+      });
+
+      userApi.getUserFriends(userId).then((response) => {
+        action({
+          type: actions.GET_USER_FRIENDS,
+          data: response.data
+        });
       }).catch((error) => {
         throw(error);
       });

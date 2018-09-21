@@ -1,4 +1,5 @@
-import React from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Col, Grid, Image, Label, Row} from "react-bootstrap";
 import UserAction from "../../Action/User";
@@ -10,7 +11,11 @@ const mapStateToProps = (state) => (
   }
 );
 
-class Header extends React.Component {
+class Header extends Component {
+  static propTypes = {
+    user: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {

@@ -1,8 +1,13 @@
-import React from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {Col, Glyphicon, Nav, Navbar, NavItem, Row} from "react-bootstrap";
 import "./Menu";
 
-class Menu extends React.Component {
+class Menu extends Component {
+  static propTypes = {
+    pathname: PropTypes.string.isRequired
+  };
+
   render() {
     const {pathname} = this.props;
     

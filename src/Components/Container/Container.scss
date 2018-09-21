@@ -1,3 +1,9 @@
 .ui-container {
-  background-color: #ffffff;
+  background-color: #e9ebee;
+  overflow: hidden;
+  .ui-shell {
+    max-height: calc(100vh - 45px);
+    min-height: calc(100vh - 45px);
+    overflow: auto;
+  }
 }

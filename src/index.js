@@ -4,6 +4,9 @@ import {Provider} from "react-redux";
 import store from "./Store/store";
 import Router from "./routes";
 
+// Scripts
+import "./Utils/Mixin";
+
 // Styles
 import "bootstrap/dist/css/bootstrap";
 import "./common";
