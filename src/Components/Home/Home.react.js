@@ -36,6 +36,7 @@ class Home extends Component {
 
   render() {
     const {tabIndex} = this.state;
+    const {userStatistics, userProfile} = this.props.user;
 
     return (
       <div className="ui-home">
@@ -56,8 +57,10 @@ class Home extends Component {
                 </NavItem>
               </Nav>
             </Col>
-            <Col md={12}>
-              <UserStats />
+            <Col md={12} className="home-container">
+              <UserStats
+                userProfile={userProfile}
+                userStatistics={userStatistics} />
             </Col>
           </Row>
         </Grid>

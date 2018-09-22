@@ -1,33 +1,76 @@
 .ui-home {
-  text-align: left;
   .nav {
-    margin: 20px 0;
+    margin-top: 20px;
     &.nav-tabs {
-      border-color: #00a89b;
+      border-color: #ffffff;
     }
     li {
       &.active {
         a {
-          background-color: transparent;
-          border-color: #00a89b;
-          border-bottom-color: #e9ebee;
-          color: #00a89b;
+          background-color: #ffffff;
+          border-color: #ffffff;
+          color: #4267b2;
           font-weight: 700;
           &:hover {
-            background-color: transparent;
-            border-color: #00a89b;
-            border-bottom-color: #e9ebee;
-            color: #00a89b;
+            background-color: #ffffff;
+            border-color: #ffffff;
+            color: #4267b2;
           }
         }
       }
       a {
-        color: #00a89b;
+        color: #4267b2;
         font-weight: 400;
         &:hover {
-          background-color: #00a89b;
+          background-color: #4267b2;
           color: #ffffff;
           font-weight: 700;
+        }
+      }
+    }
+  }
+  .home-container {
+    background-color: #ffffff;
+    .ui-user-stats {
+      .profile-container {
+        background-color: #ffffff;
+        margin: 0;
+        .profile-details {
+          border-right: 1px solid #dedede;
+          .profile-name {
+            font-size: 30px;
+          }
+          .profile-link {
+            color: #ababab;
+            font-size: 18px;
+            margin: 0 10px;
+          }
+          .profile-detail {
+            color: #ababab;
+            font-size: 12px;
+            text-decoration: underline;
+          }
+          .profile-detail-icon {
+            color: #ababab;
+            font-size: 12px;
+          }
+          .profile-gender {
+            color: #ababab;
+            text-transform: uppercase;
+          }
+        }
+        .profile-stats {
+          .stats-holder {
+            color: #4267b2;
+            font-size: 24px;
+            margin: 0;
+            text-align: center;
+          }
+          .stats-label {
+            color: #ababab;
+            font-size: 14px;
+            text-align: center;
+          }
         }
       }
     }

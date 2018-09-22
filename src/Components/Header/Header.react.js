@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Col, Grid, Image, Label, Row} from "react-bootstrap";
+import _ from "lodash";
 import UserAction from "../../Action/User";
 import "./Header";
 
@@ -19,7 +20,8 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userProfile: ""
+      name: "",
+      picture: ""
     };
   }
 
@@ -28,13 +30,20 @@ class Header extends Component {
   }
 
   componentWillReceiveProps(props) {
+    const {userProfile} = props.user;
+    _.defaults(userProfile, {
+      details: {},
+      picture: ""
+    });
+
     this.setState({
-      userProfile: props.user.userProfile
+      name: userProfile.details.name,
+      picture: userProfile.picture
     });
   }
 
   render() {
-    const {userProfile} = this.state;
+    const {picture, name} = this.state;
 
     return (
       <div className="ui-header">
@@ -43,20 +52,16 @@ class Header extends Component {
             <Col md={10}>
             </Col>
             <Col md={2} className="text-right">
-              {
-                userProfile
-                ? <div>
-                    <Image
-                      className="profile-picture"
-                      src={userProfile.picture}
-                      rounded
-                    />
-                    <Label bsStyle="success" className="profile-name">
-                      {userProfile.name}
-                    </Label>
-                  </div>
-                : ""
-              }
+              <div>
+                <Image
+                  className="profile-picture"
+                  src={picture}
+                  rounded
+                />
+                <Label bsStyle="success" className="profile-name">
+                  {name}
+                </Label>
+              </div>
             </Col>
           </Row>
         </Grid>

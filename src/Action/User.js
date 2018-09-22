@@ -13,9 +13,17 @@ const userAction = {
   },
   getUserProfile: (userId) => {
     store.dispatch((action) => {
-      userApi.getUserProfile(userId).then((response) => {
+      userApi.getUserDetails(userId).then((response) => {
         action({
-          type: actions.GET_USER_PROFILE,
+          type: actions.GET_USER_DETAILS,
+          data: response.data
+        });
+      }).catch((error) => {
+        throw(error);
+      });
+      userApi.getUserPicture(userId).then((response) => {
+        action({
+          type: actions.GET_USER_PICTURE,
           data: response.data
         });
       }).catch((error) => {

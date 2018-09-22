@@ -16,12 +16,20 @@ const userReducer = (state = initialState, action) => {
         userId: action.data.userId,
         accessToken: action.data.accessToken
       };
-    case actions.GET_USER_PROFILE:
+    case actions.GET_USER_DETAILS:
       return {
         ...state,
         userProfile: {
-          ...action.data,
-          picture: action.data.picture.data.url
+          ...state.userProfile,
+          details: action.data
+        }
+      };
+    case actions.GET_USER_PICTURE:
+      return {
+        ...state,
+        userProfile: {
+          ...state.userProfile,
+          picture: action.data.data.url
         }
       };
     case actions.GET_USER_LIKES:
@@ -45,7 +53,10 @@ const userReducer = (state = initialState, action) => {
           friends: {
             count: action.data.friends.summary.total_count
           },
-          groups: action.data.groups.data
+          groups: action.data.groups.data,
+          languages: action.data.languages,
+          paymentPricepoints: action.data.payment_pricepoints.mobile,
+          sports: action.data.sports
         }
       };
     default:

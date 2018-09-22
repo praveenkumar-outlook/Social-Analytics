@@ -1,17 +1,20 @@
 .ui-menu {
-    background-color: #e9ebee;
+    background-color: #ffffff;
     border-right: 1px solid #fefefe;
     min-height: calc(100vh - 45px);
     a {
-        border-bottom: 1px solid #fefefe;
-        border-top: 1px solid #fefefe;
+        border-bottom: 1px solid #dedede;
         color: #4267b2;
+        &:hover {
+          color: #4267b2;
+        }
     }
     li {
         margin-top: 0 !important;
         &.active {
             a {
                 background-color: #4267b2 !important;
+                border-radius: 0;
                 color: #fefefe !important;
             }
         }
