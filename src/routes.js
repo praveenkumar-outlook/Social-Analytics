@@ -8,11 +8,11 @@ const AppRouter = () => (
   <Router basename="/">
     <div className="ui-route">
       <Switch>
-        <Route exact path="/login" component={Login}></Route>
-        <Route path="/">
+        <Route exact path="/" component={Login}></Route>
+        <Route path="/facebook">
           <Container>
-            <Route exact component={Home}></Route>
-            <Route exact path="activity" component={Home}></Route>
+            <Route path="/" component={Home}></Route>
+            <Route exact path="/activity" component={Home}></Route>
           </Container>
         </Route>
       </Switch>

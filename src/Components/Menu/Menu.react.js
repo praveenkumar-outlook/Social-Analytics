@@ -8,42 +8,56 @@ class Menu extends Component {
     pathname: PropTypes.string.isRequired
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      pages: [{
+        icon: "home",
+        key: "/facebook",
+        name: "Home",
+        url: "#/facebook"
+      }, {
+        icon: "menu-hamburger",
+        key: "/facebook/activity",
+        name: "Activity",
+        url: "#/facebook/activity"
+      }],
+      pageIndex: ""
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      pageIndex: new RegExp("/facebook/activity").test(props.pathname)
+        ? "/facebook/activity" : "/facebook"
+    });
+  }
+
   render() {
-    const {pathname} = this.props;
-    
+    const {pages, pageIndex} = this.state;
+
     return (
       <div className="ui-menu">
-        <Nav bsStyle="pills" activeKey={pathname} stacked>
-          <NavItem eventKey="/" href="#/">
-            <Row>
-              <Col md={12} className="text-center">
-                <Glyphicon glyph="home" />
-              </Col>
-              <Col md={12} className="text-center">
-                Home
-              </Col>
-            </Row>
-          </NavItem>
-          <NavItem eventKey="/activity" href="#/activity">
-            <Row>
-              <Col md={12} className="text-center">
-                <Glyphicon glyph="menu-hamburger" />
-              </Col>
-              <Col md={12} className="text-center">
-                Activity
-              </Col>
-            </Row>
-          </NavItem>
-          <NavItem>
-            <Row>
-              <Col md={12} className="text-center">
-                <Glyphicon glyph="stats" />
-              </Col>
-              <Col md={12} className="text-center">
-                Graph
-              </Col>
-            </Row>
-          </NavItem>
+        <Nav bsStyle="pills" activeKey={pageIndex} stacked>
+          {
+            _.map(pages, (page) => {
+              return (
+                <NavItem
+                  key={page.key}
+                  eventKey={page.key}
+                  href={page.url}>
+                  <Row>
+                    <Col md={12} className="text-center">
+                      <Glyphicon glyph={page.icon} />
+                    </Col>
+                    <Col md={12} className="text-center">
+                      {page.name}
+                    </Col>
+                  </Row>
+                </NavItem>
+              );
+            })
+          }
         </Nav>
       </div>
     );

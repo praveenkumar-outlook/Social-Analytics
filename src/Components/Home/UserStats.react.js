@@ -23,7 +23,15 @@ class UserStats extends Component {
     };
   }
 
+  componentDidMount() {
+    this.renderProfile(this.props);
+  }
+
   componentWillReceiveProps(props) {
+    this.renderProfile(props);
+  }
+
+  renderProfile = (props) => {
     let {userStatistics, userProfile} = props;
     _.defaults(userStatistics, {
       friends: {},
@@ -52,7 +60,7 @@ class UserStats extends Component {
       paymentCredits: paymentPricepoints.length,
       picture: userProfile.picture,
       sports: sports.length,
-      userDetails: userProfile.details
+      userDetails: userProfile.details || {}
     });
     if(paymentPricepoints.length) {
       const maxPoint = _.max(paymentPricepoints, (value) => {

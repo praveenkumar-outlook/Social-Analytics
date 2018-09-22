@@ -12,7 +12,7 @@ class Login extends Component {
 
   componentWillMount() {
     const navigateToApp = () => {
-      this.props.history.push("/");
+      this.props.history.push("/facebook");
     };
     window.FB.getLoginStatus((response) => {
       if (response.status === "connected") {
@@ -23,7 +23,7 @@ class Login extends Component {
 
   login = () => {
     const navigateToApp = () => {
-      this.props.history.push("/");
+      this.props.history.push("/facebook");
     };
     window.FB.login((response) => {
       if (response.status === "connected") {

@@ -30,7 +30,7 @@ class Container extends Component {
 
   componentWillMount() {
     const navigateToLogin = () => {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
     window.FB.getLoginStatus((response) => {
       if (response.status !== "connected") {

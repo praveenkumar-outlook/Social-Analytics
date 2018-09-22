@@ -1,7 +1,9 @@
 import React, {Component} from "react";
+import {Route, Switch} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Col, Grid, Jumbotron, Nav, NavItem, Row} from "react-bootstrap";
+import _ from "underscore";
 import UserAction from "../../Action/User";
 import UserStats from "./UserStats.react";
 import "./Home";
@@ -20,7 +22,15 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabIndex: "overview"
+      tabs: [{
+        key: "/facebook",
+        name: "Overview",
+        url: "#/facebook"
+      }, {
+        key: "/facebook/payment-price-points",
+        name: "Payment Price points",
+        url: "#/facebook/payment-price-points"
+      }]
     };
   }
 
@@ -28,39 +38,49 @@ class Home extends Component {
     UserAction.getUserStatistics(this.props.user.userId);
   }
 
-  handleTabSelect = (tabIndex) => {
-    this.setState({
-      tabIndex: tabIndex
-    });
-  }
-
   render() {
-    const {tabIndex} = this.state;
+    const {pathname} = this.props.location;
     const {userStatistics, userProfile} = this.props.user;
+    const {tabs} = this.state;
 
     return (
       <div className="ui-home">
         <Grid fluid>
           <Row>
             <Col md={12}>
-              <Nav bsStyle="tabs"
-                activeKey={tabIndex}
-                onSelect={id => this.handleTabSelect(id)}>
-                <NavItem eventKey="overview">
-                  Overview
-                </NavItem>
-                <NavItem eventKey="tab-2">
-                  Tab-2
-                </NavItem>
-                <NavItem eventKey="tab-3">
-                  Tab-3
-                </NavItem>
+              <Nav
+                bsStyle="tabs"
+                activeKey={pathname}>
+                {
+                  _.map(tabs, (tab) => {
+                    return (
+                      <NavItem
+                        key={tab.key}
+                        eventKey={tab.key}
+                        href={tab.url}>
+                        {tab.name}
+                      </NavItem>
+                    );
+                  })
+                }
               </Nav>
             </Col>
             <Col md={12} className="home-container">
-              <UserStats
-                userProfile={userProfile}
-                userStatistics={userStatistics} />
+              <Switch>
+                <Route exact path="/facebook/payment-price-points"
+                  render={() =>
+                    <div>Payment price points</div>
+                  }
+                />
+                <Route exact path="/facebook"
+                  render={() =>
+                    <UserStats
+                      userProfile={userProfile}
+                      userStatistics={userStatistics}
+                    />
+                  }
+                />
+              </Switch>
             </Col>
           </Row>
         </Grid>
