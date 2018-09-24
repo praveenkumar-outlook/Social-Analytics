@@ -31,6 +31,7 @@
   }
   .home-container {
     background-color: #ffffff;
+    // User Stats
     .ui-user-stats {
       .profile-container {
         background-color: #ffffff;
@@ -70,6 +71,48 @@
             color: #ababab;
             font-size: 14px;
             text-align: center;
+          }
+        }
+      }
+    }
+    // Price points
+    .ui-price-points {
+      padding: 20px 0;
+      .price-point {
+        fill: #ffffff;
+        r: 5;
+        stroke: #ff5733;
+        stroke-width: 2;
+      }
+      .price-label {
+        font-size: 12px;
+        fill: #000000;
+      }
+      .price-points-line {
+        fill: none;
+        stroke: #ff5733;
+        stroke-width: 4;
+      }
+      .price-point-legend {
+        fill: #ff5733;
+        height: 5px;
+        width: 20px;
+      }
+      .price-grid-line {
+        stroke: #ababab;
+        stroke-dasharray: 3,3;
+        stroke-width: 1;
+      }
+      .axis {
+        .domain {
+          stroke: #ababab;
+        }
+        .tick {
+          line {
+            stroke: #ababab;
+          }
+          text {
+            fill: #ababab;
           }
         }
       }

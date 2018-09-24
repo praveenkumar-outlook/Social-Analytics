@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {Col, Grid, Jumbotron, Nav, NavItem, Row} from "react-bootstrap";
 import _ from "underscore";
 import UserAction from "../../Action/User";
+import PricePoints from "./PricePoints.react";
 import UserStats from "./UserStats.react";
 import "./Home";
 
@@ -69,7 +70,9 @@ class Home extends Component {
               <Switch>
                 <Route exact path="/facebook/payment-price-points"
                   render={() =>
-                    <div>Payment price points</div>
+                    <PricePoints
+                      userStatistics={userStatistics}
+                    />
                   }
                 />
                 <Route exact path="/facebook"
