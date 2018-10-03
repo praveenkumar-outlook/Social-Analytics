@@ -14,12 +14,33 @@ class PricePoints extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pricePoints: []
+      chartX: "",
+      chartY: "",
+      pricePoints: [],
+      tooltip: true,
+      tooltipX: 0,
+      toolTipY: 0,
+      focusPoint: {}
     };
   }
 
   componentDidMount() {
     this.el = $(ReactDOM.findDOMNode(this));
+    if (!_.isEmpty(this.props.userStatistics)) {
+      let {paymentPricepoints} = this.props.userStatistics;
+      paymentPricepoints = _.map(paymentPricepoints, (point) => {
+        return {
+          ...point,
+          userPrice: parseFloat(point.user_price)
+        }
+      });
+      this.setState({
+        pricePoints: paymentPricepoints
+      });
+      if (paymentPricepoints && paymentPricepoints.length) {
+        this.renderPricePoints(paymentPricepoints);
+      }
+    }
   }
 
   componentWillReceiveProps(props) {
@@ -50,7 +71,12 @@ class PricePoints extends Component {
     const axis = d3.select("#payment-price-points").select(".axis");
     const line = d3.line()
       .x((point) => { return x(point.credits); })
-      .y((point) => { return y(point.userPrice); })
+      .y((point) => { return y(point.userPrice); });
+
+    this.setState({
+      chartX: x,
+      chartY: y
+    });
 
     // Position graph
     graph.attr("transform", `translate(${x.bandwidth() / 2},0)`)
@@ -70,7 +96,10 @@ class PricePoints extends Component {
       .append("circle")
       .attr("class", "price-point")
       .attr("cx", (point) => { return x(point.credits); })
-      .attr("cy", (point) => { return y(point.userPrice); });
+      .attr("cy", (point) => { return y(point.userPrice); })
+      .on("mouseover", () => this.triggerTooltip(true))
+      .on("mouseout", () => this.triggerTooltip(false))
+      .on("mousemove", (point) => this.renderTooltip(point));
 
     // Render axis
     axis.selectAll("g").remove();
@@ -82,24 +111,37 @@ class PricePoints extends Component {
       .call(d3.axisLeft(y));
   }
 
+  triggerTooltip = (status) => {
+    this.setState({
+      tooltip: status
+    });
+  }
+
+  renderTooltip = (data) => {
+    const {chartX, chartY} = this.state;
+
+    this.setState({
+      focusPoint: data,
+      tooltipX: chartX(data.credits),
+      toolTipY: chartY(data.userPrice)
+    });
+  }
+
   renderXGrid = (event) => {
     const grid = d3.select("#payment-price-points").select(".grid");
     const xGrid = grid.select(".x-grid");
     xGrid.selectAll("line").remove();
     if(event.target.checked) {
-      const {pricePoints} = this.state;
+      const {pricePoints, chartX} = this.state;
       const width = this.el.find("#payment-price-points").width();
-      const x = d3.scaleBand()
-        .range([50, width])
-        .domain(_.map(pricePoints, (point) => { return point.credits; }));
-      xGrid.attr("transform", `translate(${x.bandwidth() / 2},0)`)
+      xGrid.attr("transform", `translate(${chartX.bandwidth() / 2},0)`)
       xGrid.selectAll("line")
         .data(pricePoints)
         .enter()
         .append("line")
         .attr("class", "price-grid-line")
-        .attr("x1", (point) => { return x(point.credits); })
-        .attr("x2", (point) => { return x(point.credits); })
+        .attr("x1", (point) => { return chartX(point.credits); })
+        .attr("x2", (point) => { return chartX(point.credits); })
         .attr("y1", "50")
         .attr("y2", "350");
     }
@@ -110,11 +152,8 @@ class PricePoints extends Component {
     const yGrid = grid.select(".y-grid");
     yGrid.selectAll("line").remove();
     if(event.target.checked) {
-      const {pricePoints} = this.state;
+      const {pricePoints, chartY} = this.state;
       const width = this.el.find("#payment-price-points").width();
-      const y = d3.scaleLinear()
-        .range([350, 50])
-        .domain([0, d3.max(pricePoints, (point) => { return point.userPrice; }) + 50]);
       yGrid.selectAll("line")
         .data(pricePoints)
         .enter()
@@ -122,12 +161,19 @@ class PricePoints extends Component {
         .attr("class", "price-grid-line")
         .attr("x1", "50")
         .attr("x2", width)
-        .attr("y1", (point) => { return y(point.userPrice); })
-        .attr("y2", (point) => { return y(point.userPrice); });
+        .attr("y1", (point) => { return chartY(point.userPrice); })
+        .attr("y2", (point) => { return chartY(point.userPrice); });
     }
   }
 
   render() {
+    const {
+      focusPoint,
+      tooltip,
+      tooltipX,
+      toolTipY
+    } = this.state;
+
     return (
       <div className="ui-price-points">
         <Row>
@@ -146,6 +192,19 @@ class PricePoints extends Component {
                   <g className="line" />
                   <g className="points" />
                 </g>
+                {
+                  tooltip
+                  ? <foreignObject x={tooltipX - 30} y={toolTipY - 70}
+                      width="120" height="60">
+                      <div className="price-point-tooltip">
+                        <p className="content">Credit No: {focusPoint.credits}</p>
+                        <p className="content">
+                          Points: {focusPoint.userPrice} {focusPoint.local_currency}
+                        </p>
+                      </div>
+                    </foreignObject>
+                  : ""
+                }
               </svg>
             </Col>
           </Col>

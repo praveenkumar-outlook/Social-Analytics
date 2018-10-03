@@ -12,11 +12,13 @@ class Menu extends Component {
     super(props);
     this.state = {
       pages: [{
+        disabled: false,
         icon: "home",
         key: "/facebook",
         name: "Home",
         url: "#/facebook"
       }, {
+        disabled: true,
         icon: "menu-hamburger",
         key: "/facebook/activity",
         name: "Activity",
@@ -45,7 +47,8 @@ class Menu extends Component {
                 <NavItem
                   key={page.key}
                   eventKey={page.key}
-                  href={page.url}>
+                  href={page.url}
+                  disabled={page.disabled}>
                   <Row>
                     <Col md={12} className="text-center">
                       <Glyphicon glyph={page.icon} />

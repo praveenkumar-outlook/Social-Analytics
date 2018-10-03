@@ -21,7 +21,8 @@
     .row {
       height: 100%;
       .login-logo {
-        margin: 20px;
+        margin: 0 auto 20px auto;
+        text-align: center;
       }
       .login-button {
         background-color: #4267b2;
@@ -33,7 +34,6 @@
         border-radius: 4px;
         min-height: 100%;
         padding: 10% 15px;
-        text-align: center;
       }
     }
   }

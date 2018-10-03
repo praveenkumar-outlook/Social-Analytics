@@ -79,6 +79,7 @@
     .ui-price-points {
       padding: 20px 0;
       .price-point {
+        cursor: pointer;
         fill: #ffffff;
         r: 5;
         stroke: #ff5733;
@@ -103,6 +104,19 @@
         stroke-dasharray: 3,3;
         stroke-width: 1;
       }
+      .price-point-tooltip {
+        background-color: #ffffff;
+        border: 2px solid #ff5733;
+        border-radius: 4px;
+        min-height: 100%;
+        min-width: 100%;
+        text-align: center;
+        .content {
+          font-size: 14px;
+          font-weight: 700;
+          margin: 6px 0;
+        }
+      }
       .axis {
         .domain {
           stroke: #ababab;
@@ -115,6 +129,10 @@
             fill: #ababab;
           }
         }
+      }
+      .focus-pointer {
+        width: calc(100% - 50px);
+        height: 300px;
       }
     }
   }
