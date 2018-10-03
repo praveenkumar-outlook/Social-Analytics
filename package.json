@@ -1,7 +1,7 @@
 {
-  "name": "ui-social-analytics",
+  "name": "social-analytics",
   "version": "1.0.0",
-  "description": "A UI showcase",
+  "description": "A UI showcase of social network statistics",
   "main": "index.js",
   "scripts": {
     "webpack-dev-server": "webpack-dev-server",
@@ -9,19 +9,22 @@
     "grunt-dev": "grunt dev",
     "grunt-build": "grunt build"
   },
-  "repository": "git+https://github.com/praveenkumar-outlook/UI-Social-Analytics.git",
+  "repository": "git+https://github.com/praveenkumar-outlook/Social-Analytics.git",
   "keywords": [
-    "Webpack4",
-    "React",
-    "Redux",
-    "Grunt"
+    "webpack",
+    "react",
+    "redux",
+    "redux-thunk",
+    "grunt",
+    "facebook",
+    "bootstrap"
   ],
   "author": "Praveenkumar K",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/praveenkumar-outlook/UI-Social-Analytics/issues"
+    "url": "https://github.com/praveenkumar-outlook/Social-Analytics/issues"
   },
-  "homepage": "https://github.com/praveenkumar-outlook/UI-Social-Analytics#readme",
+  "homepage": "https://github.com/praveenkumar-outlook/Social-Analytics#readme",
   "devDependencies": {
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

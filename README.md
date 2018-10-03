@@ -1,10 +1,11 @@
-# Webpack-React-Grunt
-A UI Showcase
+# Social-Analytics
+A UI showcase of social network statistics
 
 ## Specifications
  - Webpack 4.x
  - React 16.x.x
  - Bootstrap
+ - Redux
 
 # Requirements
  - Node.js - latest v8.x
