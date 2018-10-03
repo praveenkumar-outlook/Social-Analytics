@@ -6,7 +6,7 @@ const config = {
     app: path.join(__dirname, "src/index.js")
   },
   output: {
-    path: path.join(__dirname, "public/js"),
+    path: path.join(__dirname, "public"),
     hashDigestLength: 10,
     filename: "[name].[hash].bundle.js"
   },
